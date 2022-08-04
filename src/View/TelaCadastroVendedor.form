@@ -58,7 +58,7 @@
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="botaoCadastrar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,11 +95,11 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="botaoCpf" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoCpfVendedor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                          <Component id="botaoCnpj" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoCnpjVendedor" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txtCpfCnpj" min="-2" pref="127" max="-2" attributes="0"/>
+                      <Component id="txtIdVendedor" min="-2" pref="127" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" pref="91" max="-2" attributes="0"/>
@@ -113,9 +113,9 @@
                       <Component id="txtCidade" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="botaoEstado" min="-2" pref="53" max="-2" attributes="0"/>
+                  <Component id="botaoEstado1" min="-2" pref="53" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtEstadual" max="32767" attributes="0"/>
+                  <Component id="txtEstadualVendedor" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
@@ -130,12 +130,12 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="botaoCpf" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
-                      <Component id="botaoCnpj" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="botaoCpfVendedor" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="botaoCnpjVendedor" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtNomeVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCpfCnpj" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtIdVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -147,8 +147,8 @@
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtCidade" alignment="3" max="32767" attributes="0"/>
-                      <Component id="botaoEstado" alignment="3" max="32767" attributes="0"/>
-                      <Component id="txtEstadual" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoEstado1" alignment="3" max="32767" attributes="0"/>
+                      <Component id="txtEstadualVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -174,17 +174,20 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomeVendedor">
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtCpfCnpj">
+        <Component class="javax.swing.JFormattedTextField" name="txtIdVendedor">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="##.###.###/####-##" subtype="-1" type="5"/>
+              <Format format="" subtype="-1" type="5"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdVendedorActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="TelaCadastroVendedor_txtCnpjVendedor"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="botaoCpf">
+        <Component class="javax.swing.JRadioButton" name="botaoCpfVendedor">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup"/>
@@ -192,10 +195,10 @@
             <Property name="text" type="java.lang.String" value="C.P.F."/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCpfActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCpfVendedorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="botaoCnpj">
+        <Component class="javax.swing.JRadioButton" name="botaoCnpjVendedor">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup"/>
@@ -203,16 +206,19 @@
             <Property name="text" type="java.lang.String" value="C.N.P.J"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCnpjActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCnpjVendedorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtEstadual">
+        <Component class="javax.swing.JFormattedTextField" name="txtEstadualVendedor">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="#########.##-##" subtype="-1" type="5"/>
             </Property>
             <Property name="text" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEstadualVendedorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -226,7 +232,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtCidade">
         </Component>
-        <Component class="javax.swing.JComboBox" name="botaoEstado">
+        <Component class="javax.swing.JComboBox" name="botaoEstado1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="27">
@@ -470,6 +476,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoContaActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -486,6 +495,9 @@
                   <Image iconType="3" name="/images/icons 1/add.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoBancoAdicionarActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -680,6 +692,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="CADASTRAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCadastrarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
