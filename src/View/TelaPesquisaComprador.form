@@ -161,7 +161,7 @@
         <Component class="javax.swing.JTable" name="tabelaComprador">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="4">
+              <Table columnCount="6" rowCount="0">
                 <Column editable="true" title="NOME" type="java.lang.Object"/>
                 <Column editable="true" title="C.P.F. | C.N.P.J." type="java.lang.Object"/>
                 <Column editable="true" title="INSCRI&#xc7;&#xc3;O ESTADUAL" type="java.lang.Object"/>

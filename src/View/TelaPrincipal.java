@@ -5,6 +5,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
       Gerenciadora g = new Gerenciadora();
     public TelaPrincipal() {
         initComponents();
+        menuContatos.setVisible(false);
       
     }
 
@@ -42,11 +43,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelPrincipal.setLayout(painelPrincipalLayout);
         painelPrincipalLayout.setHorizontalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 906, Short.MAX_VALUE)
+            .addGap(0, 850, Short.MAX_VALUE)
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
 
         menuBarra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -54,6 +55,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuArquivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/paste_plain.png"))); // NOI18N
         menuArquivo.setText("GERAL");
 
+        menuRelatorio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/disk.png"))); // NOI18N
         menuRelatorio.setText("GERAR CONTRATO");
         menuRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -65,11 +67,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuContatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/group.png"))); // NOI18N
         menuContatos.setText("CADASTROS");
-        menuContatos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuContatosActionPerformed(evt);
-            }
-        });
         menuArquivo.add(menuContatos);
 
         menuBarra.add(menuArquivo);
@@ -77,6 +74,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuComprador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/money.png"))); // NOI18N
         menuComprador.setText("COMPRADOR");
 
+        menuCadastrarComprador.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuCadastrarComprador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/money_add.png"))); // NOI18N
         menuCadastrarComprador.setText("CADASTRAR");
         menuCadastrarComprador.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +84,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuComprador.add(menuCadastrarComprador);
 
+        menuConsultarComprador.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuConsultarComprador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/zoom.png"))); // NOI18N
         menuConsultarComprador.setText("CONSULTAR/EDITAR");
         menuConsultarComprador.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +99,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/user.png"))); // NOI18N
         menuVendedor.setText("VENDEDOR");
 
+        menuCadastrarVendedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuCadastrarVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/user_add.png"))); // NOI18N
         menuCadastrarVendedor.setText("CADASTRAR");
         menuCadastrarVendedor.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +109,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuVendedor.add(menuCadastrarVendedor);
 
+        menuConsultarVendedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuConsultarVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/zoom.png"))); // NOI18N
         menuConsultarVendedor.setText("CONSULTAR/EDITAR");
         menuConsultarVendedor.addActionListener(new java.awt.event.ActionListener() {
@@ -167,10 +168,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelPrincipal.add(telaPesquisaComprador);
         telaPesquisaComprador.setVisible(true);
     }//GEN-LAST:event_menuConsultarCompradorActionPerformed
-
-    private void menuContatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuContatosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuContatosActionPerformed
 
     private void menuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioActionPerformed
         // TODO add your handling code here:

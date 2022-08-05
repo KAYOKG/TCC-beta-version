@@ -19,6 +19,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuRelatorio">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+A"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/icons 1/disk.png"/>
                 </Property>
@@ -35,9 +38,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="CADASTROS"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuContatosActionPerformed"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -51,6 +51,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuCadastrarComprador">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+S"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/icons 1/money_add.png"/>
                 </Property>
@@ -62,6 +65,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarComprador">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+F"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/icons 1/zoom.png"/>
                 </Property>
@@ -83,6 +89,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuCadastrarVendedor">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+D"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/icons 1/user_add.png"/>
                 </Property>
@@ -94,6 +103,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarVendedor">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+G"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/icons 1/zoom.png"/>
                 </Property>
@@ -155,12 +167,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="906" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="850" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="465" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="627" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

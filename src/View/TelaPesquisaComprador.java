@@ -119,10 +119,7 @@ public class TelaPesquisaComprador extends javax.swing.JInternalFrame {
 
         tabelaComprador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "NOME", "C.P.F. | C.N.P.J.", "INSCRIÇÃO ESTADUAL", "ESTADO", "CIDADE", "ENDEREÇO"
