@@ -32,14 +32,16 @@ public class TelaPesquisaComprador extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        txtConsultaComprador = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         botaoPesquisar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        botaoCpfVendedor = new javax.swing.JRadioButton();
+        botaoCnpjVendedor = new javax.swing.JRadioButton();
+        txtConsultaComprador = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaComprador = new javax.swing.JTable();
 
@@ -49,8 +51,6 @@ public class TelaPesquisaComprador extends javax.swing.JInternalFrame {
         setTitle("Pesquisa de Comprador");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa e Edição de Cadastros"));
-
-        jLabel1.setText("CPF");
 
         botaoPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons 1/accept.png"))); // NOI18N
         botaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +77,33 @@ public class TelaPesquisaComprador extends javax.swing.JInternalFrame {
 
         jLabel3.setText("EXCLUIR");
 
+        buttonGroup1.add(botaoCpfVendedor);
+        botaoCpfVendedor.setText("C.P.F.");
+        botaoCpfVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCpfVendedorActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(botaoCnpjVendedor);
+        botaoCnpjVendedor.setText("C.N.P.J");
+        botaoCnpjVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCnpjVendedorActionPerformed(evt);
+            }
+        });
+
+        try {
+            txtConsultaComprador.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtConsultaComprador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConsultaCompradorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -84,12 +111,12 @@ public class TelaPesquisaComprador extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtConsultaComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(botaoPesquisar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel1)))
+                        .addComponent(botaoCpfVendedor)
+                        .addGap(7, 7, 7)
+                        .addComponent(botaoCnpjVendedor))
+                    .addComponent(txtConsultaComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(botaoPesquisar)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botaoEditar)
@@ -103,18 +130,21 @@ public class TelaPesquisaComprador extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoEditar)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtConsultaComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoPesquisar))
-                    .addComponent(botaoExcluir)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoCpfVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoCnpjVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtConsultaComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoEditar)
+                            .addComponent(botaoPesquisar)
+                            .addComponent(botaoExcluir))))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         tabelaComprador.setModel(new javax.swing.table.DefaultTableModel(
@@ -139,7 +169,7 @@ public class TelaPesquisaComprador extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,17 +212,39 @@ public class TelaPesquisaComprador extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
+    private void botaoCpfVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCpfVendedorActionPerformed
+        try {
+            txtConsultaComprador.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_botaoCpfVendedorActionPerformed
+
+    private void botaoCnpjVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCnpjVendedorActionPerformed
+        try {
+            txtConsultaComprador.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_botaoCnpjVendedorActionPerformed
+
+    private void txtConsultaCompradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultaCompradorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConsultaCompradorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton botaoCnpjVendedor;
+    private javax.swing.JRadioButton botaoCpfVendedor;
     private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoPesquisar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabelaComprador;
-    private javax.swing.JTextField txtConsultaComprador;
+    private javax.swing.JFormattedTextField txtConsultaComprador;
     // End of variables declaration//GEN-END:variables
 }
