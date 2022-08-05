@@ -1,6 +1,4 @@
-# TCC
-
-Tem que ser:
+# TCC (beta)
 
 •Aplicação desktop
 
@@ -15,9 +13,9 @@ Tem que ser:
 •Sistema estilo OneDrive que salva os contratos e os cadastrados on-line de maneira compartilhada e se outro funcionário quiser atualizar sua lista de Contatos salvos localmente ele só atualiza
 
 •Sistema para pagar a licença do uso do programa na parte de cadastro e sistema que valida se a empresa cadastrada está permitida para usar o programa(evitar crack do programa)
-=====================
-Dentro do programa:
 
+Dentro do programa:
+=
 •Quando escrever o endereço, o programa sugerir os endereços com base no que escrever
 
 •Programa verificar se o CPF está certo e o CNPJ também e se possivel a inscrição estadual também 
