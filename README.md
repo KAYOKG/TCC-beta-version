@@ -1,6 +1,7 @@
 # TCC
 
 Tem que ser:
+
 •Aplicação desktop
 
 •Faz cadastro de comprador e vendedor
