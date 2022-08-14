@@ -1,12 +1,10 @@
-
 package View;
 
-
-public class CpfInvalidException extends RuntimeException{
+public class CpfInvalidException extends RuntimeException {
 
     public CpfInvalidException() {
-        super("CPF ja cadastrado");
-        
+        super("ERRO! CPF/CNPJ ja cadastrado");
+
     }
-    
+
 }

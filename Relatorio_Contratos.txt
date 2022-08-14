@@ -1,0 +1,16 @@
+id Contrato: 1, data: Sun Aug 07 09:49:33 BRT 2022, Produto: Chuteira, descricao:chuteira da copa, observacao: item raro, tomar cuidado, preco(R$): 2322.0, total(R$): 2322.0, quantidade: 1
+Comprador Nome: Lionel Messi, Id: 666.666.666-66, Cidade: Monte Carmelo, Estado: MG, Inscricao Estadual: 666666666.66-66, Endereco: Rua cruzado
+Vendedor  Nome: Cristiano Ronaldo, Id: 777.777.777-77, Cidade: Furnas, Estado: SP, Inscricao Estadual: 777777777.77-77, Endereco: Av cinco, Banco: NUBANK, Agencia: 4325, Conta: 43242423, Cidade do Banco: Furnas, Estado do Banco: SP, Tipo Conta: CORRENTE
+
+id Contrato: 2, data: Sun Aug 07 09:49:33 BRT 2022, Produto: chaves, descricao:chaves de metal, observacao: frete gratuito, preco(R$): 322.0, total(R$): 1610.0, quantidade: 5
+Comprador Nome: Fernando Alonso, Id: 111.111.111-11, Cidade: Uberaba, Estado: MG, Inscricao Estadual: 111111111.11-11, Endereco: Av leopodino
+Vendedor  Nome: Douglas Vieira, Id: 333.333.333-33, Cidade: Rio de Janeiro, Estado: RJ, Inscricao Estadual: 333333333.33-33, Endereco: Rio de Janeiro, Banco: BB, Agencia: 4324, Conta: 43254.55, Cidade do Banco: Rio de Janeiro, Estado do Banco: RJ, Tipo Conta: CONTA
+
+id Contrato: 3, data: Sun Aug 07 09:49:33 BRT 2022, Produto: katana, descricao:katanas japonesas inox, observacao: entrega no dia 09/09, preco(R$): 3333.0, total(R$): 43329.0, quantidade: 13
+Comprador Nome: Gabriel Fernadez, Id: 222.222.222-22, Cidade: Patos de Minas, Estado: MG, Inscricao Estadual: 222222222.22-22, Endereco: Rua inglaterra
+Vendedor  Nome: Bruce Lee, Id: 888.888.888-88, Cidade: Rio de Janeio, Estado: RJ, Inscricao Estadual: 888888888.88-88, Endereco: Morro do jacarezin, Banco: C6, Agencia: 4325, Conta: 2345524, Cidade do Banco: Rio de Janeio, Estado do Banco: RJ, Tipo Conta: POUPANÇA
+
+id Contrato: 214, data: Sun Aug 07 09:52:12 BRT 2022, Produto: pneus, descricao:produto de alta durabilidade, observacao: Aro 17, preco(R$): 1000.0, total(R$): 5000.0, quantidade: 5
+Comprador Nome: Fernando Alonso, Id: 111.111.111-11, Cidade: Uberaba, Estado: MG, Inscricao Estadual: 111111111.11-11, Endereco: Av leopodino
+Vendedor  Nome: Douglas Vieira, Id: 333.333.333-33, Cidade: Rio de Janeiro, Estado: RJ, Inscricao Estadual: 333333333.33-33, Endereco: Rio de Janeiro, Banco: BB, Agencia: 4324, Conta: 43254.55, Cidade do Banco: Rio de Janeiro, Estado do Banco: RJ, Tipo Conta: CONTA
+

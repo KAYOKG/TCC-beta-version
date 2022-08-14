@@ -1,11 +1,71 @@
 package View;
 
-public class Corretora {
-    private String idContrato, data, descricao;
+import java.io.Serializable;
+
+public class Corretora implements Serializable{
+
+    private String idContrato, data, descricao, observacao, produto;
+    private float preco, total;
+    private int quantidade;
     private Comprador c;
     private Vendedor v;
 
     public Corretora() {
+
+    }
+
+    public Corretora(String idContrato, String data, String descricao, String observacao, String produto, float preco, float total, int quantidade, Comprador c, Vendedor v) {
+        this.idContrato = idContrato;
+        this.data = data;
+        this.descricao = descricao;
+        this.observacao = observacao;
+        this.produto = produto;
+        this.preco = preco;
+        this.total = total;
+        this.quantidade = quantidade;
+        this.c = c;
+        this.v = v;
+    }
+
+    public String getProduto() {
+        return produto;
+    }
+
+    public void setProduto(String produto) {
+        this.produto = produto;
+    }
+
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     public String getIdContrato() {
@@ -47,6 +107,10 @@ public class Corretora {
     public void setV(Vendedor v) {
         this.v = v;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "id Contrato: " + idContrato + ", data: " + data +  ", Produto: " + produto + ", descricao:" + descricao + ", observacao: " + observacao + ", preco(R$): " + preco + ", total(R$): " + total + ", quantidade: " + quantidade + "\n" + c + "\n" + v + "\n" ;
+    }
+
 }

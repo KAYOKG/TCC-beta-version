@@ -1,6 +1,9 @@
 package View;
 
-public class Comprador {
+import java.io.Serializable;
+
+public class Comprador implements Serializable {
+
     private String nome, id, cidade, estado, inscEstadual, endereco;
 
     public Comprador(String nome, String id, String cidade, String estado, String inscEstadual, String endereco) {
@@ -12,7 +15,6 @@ public class Comprador {
         this.endereco = endereco;
     }
 
-    
     public Comprador() {
     }
 
@@ -63,6 +65,10 @@ public class Comprador {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Comprador " + "Nome: " + nome + ", Id: " + id + ", Cidade: " + cidade + ", Estado: " + estado + ", Inscricao Estadual: " + inscEstadual + ", Endereco: " + endereco;
+    }
+
 }

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class TelaCadastroComprador extends javax.swing.JInternalFrame {
-    
+
     Gerenciadora g;
-  
+
     public TelaCadastroComprador(Gerenciadora g) {
         initComponents();
         this.g = g;
@@ -22,7 +22,7 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
         caixatxt = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtNomeComprador = new javax.swing.JTextField();
-        txtEstadual = new javax.swing.JFormattedTextField();
+        txtEstadualComprador = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtCidade = new javax.swing.JTextField();
@@ -30,8 +30,9 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
         botaoEstado = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        txtIdComprador = new javax.swing.JTextField();
+        txtIdComprador = new javax.swing.JFormattedTextField();
+        botaoCpfComprador = new javax.swing.JRadioButton();
+        botaoCnpjComprador = new javax.swing.JRadioButton();
         botaoCadastrar = new javax.swing.JButton();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         painel1 = new javax.swing.JPanel();
@@ -108,11 +109,11 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
         caixatxt.setText("NOME");
 
         try {
-            txtEstadual.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########.##-##")));
+            txtEstadualComprador.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########.##-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtEstadual.setText("");
+        txtEstadualComprador.setText("");
 
         jLabel4.setText("INSCRIÇÃO ESTADUAL");
 
@@ -124,11 +125,30 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
 
         jLabel6.setText("ESTADO");
 
-        jLabel1.setText("CPF");
-
+        try {
+            txtIdComprador.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtIdComprador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdCompradorActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(botaoCpfComprador);
+        botaoCpfComprador.setText("C.P.F.");
+        botaoCpfComprador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCpfCompradorActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(botaoCnpjComprador);
+        botaoCnpjComprador.setText("C.N.P.J");
+        botaoCnpjComprador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCnpjCompradorActionPerformed(evt);
             }
         });
 
@@ -136,24 +156,6 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
         painelDadosPessoal.setLayout(painelDadosPessoalLayout);
         painelDadosPessoalLayout.setHorizontalGroup(
             painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelDadosPessoalLayout.createSequentialGroup()
-                .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(painelDadosPessoalLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(painelDadosPessoalLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(painelDadosPessoalLayout.createSequentialGroup()
                 .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -164,17 +166,41 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
             .addGroup(painelDadosPessoalLayout.createSequentialGroup()
                 .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelDadosPessoalLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(caixatxt)
-                        .addGap(189, 189, 189))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDadosPessoalLayout.createSequentialGroup()
-                        .addComponent(txtNomeComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)))
+                        .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(painelDadosPessoalLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)))
+                    .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelDadosPessoalLayout.createSequentialGroup()
+                            .addGap(2, 2, 2)
+                            .addComponent(caixatxt)
+                            .addGap(189, 189, 189))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDadosPessoalLayout.createSequentialGroup()
+                            .addComponent(txtNomeComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(3, 3, 3))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(painelDadosPessoalLayout.createSequentialGroup()
-                        .addComponent(txtIdComprador)
-                        .addGap(97, 97, 97))))
+                        .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(painelDadosPessoalLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(txtEstadualComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelDadosPessoalLayout.createSequentialGroup()
+                        .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtIdComprador, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelDadosPessoalLayout.createSequentialGroup()
+                                .addComponent(botaoCpfComprador)
+                                .addGap(7, 7, 7)
+                                .addComponent(botaoCnpjComprador)))
+                        .addContainerGap())))
         );
         painelDadosPessoalLayout.setVerticalGroup(
             painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,12 +210,16 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
                         .addGap(63, 63, 63)
                         .addComponent(jLabel7))
                     .addGroup(painelDadosPessoalLayout.createSequentialGroup()
-                        .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(caixatxt)
-                            .addComponent(jLabel1))
-                        .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNomeComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(painelDadosPessoalLayout.createSequentialGroup()
+                                .addComponent(caixatxt)
+                                .addGap(0, 0, 0)
+                                .addComponent(txtNomeComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelDadosPessoalLayout.createSequentialGroup()
+                                .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(botaoCpfComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botaoCnpjComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtIdComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelDadosPessoalLayout.createSequentialGroup()
@@ -197,7 +227,7 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
                                 .addGap(0, 0, 0)
                                 .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txtEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtEstadualComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(botaoEstado))
                                     .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(painelDadosPessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -852,15 +882,15 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
             .addComponent(painel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 90, Short.MAX_VALUE)
+                    .addGap(0, 94, Short.MAX_VALUE)
                     .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 90, Short.MAX_VALUE)))
+                    .addGap(0, 94, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    public void verificaCpf(String busca) {
+
+    public void verificaId(String busca) {
 
         ArrayList<Comprador> c1;
 
@@ -872,64 +902,72 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
             }
         }
     }
-    private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
 
-            try {
-                 verificaCpf(txtIdComprador.getText());
-                 
+    public void camposObrigatoriosC(String nome, String cidade, String id, String endereco, String insc) {
+        if (nome.equals("") || cidade.equals("") || id.equals("   .   .   -  ") || id.equals("  .   .   /    -  ")
+                || endereco.equals("") || insc.equals("         .  -  ")) {
+            throw new CampoInvalidException();
+        }
+    }
+
+    private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
+        try {
+            verificaId(txtIdComprador.getText());
+            camposObrigatoriosC(txtNomeComprador.getText(), txtCidade.getText(), txtIdComprador.getText(), txtEndereco.getText(), txtEstadualComprador.getText());
+
             Comprador c = new Comprador();
-           
-               
+
             c.setNome(txtNomeComprador.getText());
             c.setCidade(txtCidade.getText());
             c.setId(txtIdComprador.getText());
             c.setEndereco(txtEndereco.getText());
-            c.setInscEstadual(txtEstadual.getText());
-            c.setCidade(txtCidade.getText());
+            c.setInscEstadual(txtEstadualComprador.getText());
+            c.setEstado(botaoEstado.getSelectedItem().toString());
 
-            if (g.salvarComprador(c) == true) {
+            g.salvarComprador(c);
 
-                JOptionPane.showMessageDialog(null, "Comprador cadastrado com sucesso");
+            JOptionPane.showMessageDialog(null, "Comprador cadastrado com sucesso");
 
-                txtNomeComprador.setText("");
-                txtCidade.setText("");
-                txtIdComprador.setText("");
-                txtEndereco.setText("");
-                txtEstadual.setText("");
-                txtCidade.setText("");
+            txtNomeComprador.setText("");
+            txtCidade.setText("");
+            txtIdComprador.setText("");
+            txtEndereco.setText("");
+            txtEstadualComprador.setText("");
 
+        } catch (CpfInvalidException | CampoInvalidException e) {
 
-            } else {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
 
-                JOptionPane.showMessageDialog(null, "ERRO ao cadastrar");
-
-            }
-
-          
-        } catch (CpfInvalidException e) {
-           JOptionPane.showMessageDialog(null, e.getMessage());
-            
-                txtNomeComprador.setText("");
-                txtCidade.setText("");
-                txtIdComprador.setText("");
-                txtEndereco.setText("");
-                txtEstadual.setText("");
-                txtCidade.setText("");
-
-       }
-           
-        
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void txtIdCompradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCompradorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdCompradorActionPerformed
 
+    private void botaoCpfCompradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCpfCompradorActionPerformed
+        try {
+            txtIdComprador.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_botaoCpfCompradorActionPerformed
+
+    private void botaoCnpjCompradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCnpjCompradorActionPerformed
+        try {
+            txtIdComprador.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_botaoCnpjCompradorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdd1;
     private javax.swing.JButton botaoAdd3;
     private javax.swing.JButton botaoCadastrar;
+    private javax.swing.JRadioButton botaoCnpjComprador;
+    private javax.swing.JRadioButton botaoCpfComprador;
     private javax.swing.JComboBox<String> botaoEndereco2;
     private javax.swing.JComboBox<String> botaoEndereco5;
     private javax.swing.JComboBox<String> botaoEndereco6;
@@ -946,7 +984,6 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel caixatxt;
     private javax.swing.JLabel caixatxt1;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel19;
@@ -999,13 +1036,13 @@ public class TelaCadastroComprador extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtEndereco6;
     private javax.swing.JTextField txtEndereco8;
     private javax.swing.JTextField txtEndereco9;
-    private javax.swing.JFormattedTextField txtEstadual;
     private javax.swing.JFormattedTextField txtEstadual3;
     private javax.swing.JFormattedTextField txtEstadual6;
     private javax.swing.JFormattedTextField txtEstadual7;
     private javax.swing.JFormattedTextField txtEstadual8;
     private javax.swing.JFormattedTextField txtEstadual9;
-    private javax.swing.JTextField txtIdComprador;
+    private javax.swing.JFormattedTextField txtEstadualComprador;
+    private javax.swing.JFormattedTextField txtIdComprador;
     private javax.swing.JTextField txtNomeComprador;
     private javax.swing.JTextField txtNomeVendedor1;
     // End of variables declaration//GEN-END:variables

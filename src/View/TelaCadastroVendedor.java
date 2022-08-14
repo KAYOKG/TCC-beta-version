@@ -1,4 +1,3 @@
-
 package View;
 
 import java.util.ArrayList;
@@ -443,14 +442,13 @@ public class TelaCadastroVendedor extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelPessoal, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(painelBancario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoCadastrar)
-                .addGap(7, 7, 7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoCadastrar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(painelPessoal, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(painelBancario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,14 +499,6 @@ public class TelaCadastroVendedor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botaoBancoAdicionarActionPerformed
 
-    public static String onlyNumbers(String str) {
-        if (str != null) {
-            return str.replaceAll("0123456789", "");
-        } else {
-            return "";
-        }
-    }
-
     public void verificaCpf(String busca) {
 
         ArrayList<Vendedor> v1;
@@ -522,52 +512,40 @@ public class TelaCadastroVendedor extends javax.swing.JInternalFrame {
         }
     }
 
+    public void camposObrigatoriosV(String nome, String cidade, String id, String endereco, String insc) {
+        if (nome.equals("") || cidade.equals("") || id.equals("   .   .   -  ") || id.equals("  .   .   /    -  ")
+                || endereco.equals("") || insc.equals("         .  -  ")) {
+            throw new CampoInvalidException();
+        }
+    }
+
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
         try {
+            camposObrigatoriosV(txtNomeVendedor.getText(), txtCidade.getText(), txtIdVendedor.getText(),
+                    txtEndereco.getText(), txtEstadualVendedor.getText());
 
             verificaCpf(txtIdVendedor.getText());
 
             Vendedor v = new Vendedor();
 
             v.setNome(txtNomeVendedor.getText());
-            v.setAgencia(txtAgencia.getText());
-            v.setBanco(txtBanco.getText());
             v.setCidade(txtCidade.getText());
             v.setId(txtIdVendedor.getText());
-            v.setCidadeBanco(txtBancoCidade.getText());
-            v.setConta(txtConta.getText());
             v.setEndereco(txtEndereco.getText());
             v.setInscEstadual(txtEstadualVendedor.getText());
             v.setCidade(txtCidade.getText());
-            v.setTipoConta(botaoConta.getSelectedItem().toString());
             v.setEstado(botaoEstado1.getSelectedItem().toString());
+            v.setTipoConta(botaoConta.getSelectedItem().toString());
             v.setEstadoBanco(botaoBancoEstado.getSelectedItem().toString());
+            v.setAgencia(txtAgencia.getText());
+            v.setBanco(txtBanco.getText());
+            v.setCidadeBanco(txtBancoCidade.getText());
+            v.setConta(txtConta.getText());
 
-            if (g.salvarVendedor(v) == true) {
+            g.salvarVendedor(v);
 
-                JOptionPane.showMessageDialog(null, "Vendedor cadastrado com sucesso");
-
-                txtNomeVendedor.setText("");
-                txtAgencia.setText("");
-                txtBanco.setText("");
-                txtCidade.setText("");
-                txtIdVendedor.setText("");
-                txtBancoCidade.setText("");
-                txtConta.setText("");
-                txtEndereco.setText("");
-                txtEstadualVendedor.setText("");
-                txtCidade.setText("");
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "ERRO ao cadastrar");
-
-            }
-
-          
-        } catch (CpfInvalidException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Vendedor cadastrado com sucesso");
 
             txtNomeVendedor.setText("");
             txtAgencia.setText("");
@@ -579,6 +557,9 @@ public class TelaCadastroVendedor extends javax.swing.JInternalFrame {
             txtEndereco.setText("");
             txtEstadualVendedor.setText("");
             txtCidade.setText("");
+
+        } catch (CpfInvalidException | CampoInvalidException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
         }
     }//GEN-LAST:event_botaoCadastrarActionPerformed

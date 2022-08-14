@@ -1,13 +1,15 @@
-
 package View;
 
-public class Vendedor {
-   //dados pessoais
-   private String nome, id, cidade, estado, inscEstadual, endereco;
-  //dados bancarios
-   private String banco, agencia, conta, cidadeBanco, estadoBanco, tipoConta;
+import java.io.Serializable;
 
-    public Vendedor(String nome, String id, String cidade, String estado, String inscEstadual, String endereco, String banco, String agencia, String conta, String cidadeBanco, String estadoBanco, String tipoConta ) {
+public class Vendedor implements Serializable {
+    //dados pessoais
+
+    private String nome, id, cidade, estado, inscEstadual, endereco;
+    //dados bancarios
+    private String banco, agencia, conta, cidadeBanco, estadoBanco, tipoConta;
+
+    public Vendedor(String nome, String id, String cidade, String estado, String inscEstadual, String endereco, String banco, String agencia, String conta, String cidadeBanco, String estadoBanco, String tipoConta) {
         this.nome = nome;
         this.id = id;
         this.cidade = cidade;
@@ -48,7 +50,6 @@ public class Vendedor {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
 
     public String getCidade() {
         return cidade;
@@ -124,16 +125,7 @@ public class Vendedor {
 
     @Override
     public String toString() {
-        return "Vendedor{" + "nome=" + nome + ", id=" + id + ", cidade=" + cidade + ", estado=" + estado + ", inscEstadual=" + inscEstadual + ", endereco=" + endereco + ", banco=" + banco + ", agencia=" + agencia + ", conta=" + conta + ", cidadeBanco=" + cidadeBanco + ", estadoBanco=" + estadoBanco + ", tipoConta=" + tipoConta + '}';
+        return "Vendedor " + " Nome: " + nome + ", Id: " + id + ", Cidade: " + cidade + ", Estado: " + estado + ", Inscricao Estadual: " + inscEstadual + ", Endereco: " + endereco + ", Banco: " + banco + ", Agencia: " + agencia + ", Conta: " + conta + ", Cidade do Banco: " + cidadeBanco + ", Estado do Banco: " + estadoBanco + ", Tipo Conta: " + tipoConta;
     }
 
-   
-
-  
-   
-   
-    
-    
-    
-    
 }

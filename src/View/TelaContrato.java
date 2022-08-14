@@ -1,59 +1,101 @@
 package View;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class TelaContrato extends javax.swing.JInternalFrame  {
+public class TelaContrato extends javax.swing.JInternalFrame {
 
     Gerenciadora g;
+    ArrayList<Comprador> compradores;
+    ArrayList<Vendedor> vendedores;
+
     public TelaContrato(Gerenciadora g) {
         initComponents();
         this.g = g;
+        compradores = g.getCompradores();
+        vendedores = g.getVendedores();
+        for (Comprador c : compradores) {
+            botaoComprador.addItem(c.getNome());
+        }
+
+        for (Vendedor v : vendedores) {
+            botaovendedor.addItem(v.getNome());
+        }
     }
 
     @SuppressWarnings("unchecked")
+
+    public void verificaContrato(String busca) {
+
+        ArrayList<Corretora> c1;
+
+        c1 = g.getContratos();
+
+        for (Corretora v : c1) {
+            if (busca.equals(v.getIdContrato())) {
+                throw new NumeroContratoInvalidException();
+            }
+        }
+    }
+
+    public void camposObrigatorios(String contrato, String produto, String qnt, String preco) {
+        if (contrato.equals("") || produto.equals("") || preco.equals("")) {
+            throw new CampoInvalidException();
+        }
+    }
+    
+      public void camposObrigatorios(String Idcontrato) {
+        if (Idcontrato.equals("")) {
+            throw new CampoIdInvalidException();
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        txtData = new javax.swing.JSpinner();
+        txtNumeroContrato = new javax.swing.JTextField();
+        botaoAlterarContrato = new javax.swing.JButton();
+        botaoExcluirContrato = new javax.swing.JButton();
+        botaoConsultaContrato = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jFormattedTextField6 = new javax.swing.JFormattedTextField();
+        botaoComprador = new javax.swing.JComboBox<>();
+        txtEnderecoComprador = new javax.swing.JTextField();
+        txtIdComprador = new javax.swing.JTextField();
+        txtCidadeComprador = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txtInscricaoComprador = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jTextField10 = new javax.swing.JTextField();
-        jFormattedTextField7 = new javax.swing.JFormattedTextField();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jTextField11 = new javax.swing.JTextField();
+        txtCidadeVendedor = new javax.swing.JTextField();
+        txtInscricaoVendedor = new javax.swing.JFormattedTextField();
+        botaovendedor = new javax.swing.JComboBox<>();
+        txtEnderecoVendedor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        txtIdVendedor = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
-        jTextField13 = new javax.swing.JTextField();
-        botaoBancoEstado1 = new javax.swing.JComboBox<>();
+        txtBanco = new javax.swing.JTextField();
+        txtContaBanco = new javax.swing.JTextField();
+        txtAgencia = new javax.swing.JFormattedTextField();
+        txtCidadeBanco = new javax.swing.JTextField();
+        txtEstadoBanco = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtProduto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jSpinner3 = new javax.swing.JSpinner();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        txtDescricao = new javax.swing.JTextPane();
+        txtPreco = new javax.swing.JFormattedTextField();
+        txtTotal = new javax.swing.JFormattedTextField();
+        txtQuantidade = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
+        txtObservacao = new javax.swing.JTextPane();
+        botaoGerarContrato = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -62,55 +104,96 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Corretora", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jLabel2.setText("N° do contrato");
+        jLabel2.setText("N° do contrato:");
 
         jLabel3.setText("Data:");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        txtData.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(1659583560000L), null, java.util.Calendar.DAY_OF_MONTH));
 
-        jSpinner2.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(1659583560000L), null, java.util.Calendar.DAY_OF_MONTH));
+        botaoAlterarContrato.setText("ALTERAR");
+        botaoAlterarContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAlterarContratoActionPerformed(evt);
+            }
+        });
+
+        botaoExcluirContrato.setText("EXCLUIR");
+        botaoExcluirContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirContratoActionPerformed(evt);
+            }
+        });
+
+        botaoConsultaContrato.setText("CONSULTAR");
+        botaoConsultaContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConsultaContratoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jLabel2)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroContrato))
+                .addGap(182, 182, 182)
+                .addComponent(botaoConsultaContrato)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(251, 251, 251)
-                .addComponent(jLabel3)
+                .addComponent(botaoAlterarContrato)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(botaoExcluirContrato)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel2)
-                .addComponent(jLabel3)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNumeroContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoConsultaContrato)
+                    .addComponent(botaoAlterarContrato)
+                    .addComponent(botaoExcluirContrato))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COMPRADOR", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONE O NOME", "comprador 1", "comprador 2" }));
+        botaoComprador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCompradorActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("ENDEREÇO");
+        txtEnderecoComprador.setEditable(false);
+        txtEnderecoComprador.setText("ENDEREÇO");
 
-        jTextField2.setText("CPF | CNPJ");
+        txtIdComprador.setEditable(false);
+        txtIdComprador.setText("CPF | CNPJ");
 
-        jTextField3.setText("CIDADE");
-
-        try {
-            jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########.##-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtCidadeComprador.setEditable(false);
+        txtCidadeComprador.setText("CIDADE");
 
         jLabel1.setText("INSCRIÇÃO ESTADUAL:");
+
+        txtInscricaoComprador.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,19 +201,19 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCidadeComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEnderecoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtInscricaoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(42, 42, 42))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,34 +221,42 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCidadeComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEnderecoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(txtInscricaoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VENDEDOR", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jTextField10.setText("CIDADE");
+        txtCidadeVendedor.setEditable(false);
+        txtCidadeVendedor.setText("CIDADE");
 
+        txtInscricaoVendedor.setEditable(false);
         try {
-            jFormattedTextField7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########.##-##")));
+            txtInscricaoVendedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########.##-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONE O NOME", "comprador 1", "comprador 2" }));
+        botaovendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaovendedorActionPerformed(evt);
+            }
+        });
 
-        jTextField11.setText("ENDEREÇO");
+        txtEnderecoVendedor.setEditable(false);
+        txtEnderecoVendedor.setText("ENDEREÇO");
 
         jLabel4.setText("INSCRIÇÃO ESTADUAL:");
 
-        jTextField12.setText("CPF | CNPJ");
+        txtIdVendedor.setEditable(false);
+        txtIdVendedor.setText("CPF | CNPJ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -173,19 +264,19 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCidadeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEnderecoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtInscricaoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(42, 42, 42))
         );
         jPanel3Layout.setVerticalGroup(
@@ -193,28 +284,33 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCidadeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEnderecoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtInscricaoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BANCO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jTextField7.setText("Nome do Banco");
+        txtBanco.setEditable(false);
+        txtBanco.setText("Nome do Banco");
 
-        jTextField8.setText("Tipo de Conta");
+        txtContaBanco.setEditable(false);
+        txtContaBanco.setText("Tipo de Conta");
 
-        jFormattedTextField5.setText("Agencia");
+        txtAgencia.setEditable(false);
+        txtAgencia.setText("Agencia");
 
-        jTextField13.setText("CIDADE");
+        txtCidadeBanco.setEditable(false);
+        txtCidadeBanco.setText("CIDADE");
 
-        botaoBancoEstado1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        txtEstadoBanco.setEditable(false);
+        txtEstadoBanco.setText("AC");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -222,25 +318,25 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtContaBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCidadeBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoBancoEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEstadoBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(botaoBancoEstado1))
+                .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtContaBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCidadeBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEstadoBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DESCRIÇÃO DA VENDA", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -253,13 +349,17 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
 
         jLabel8.setText("TOTAL");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(txtDescricao);
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        txtPreco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecoKeyReleased(evt);
+            }
+        });
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        jLabel10.setText("QNT");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -269,21 +369,23 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addGap(38, 38, 38)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -304,14 +406,16 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -323,11 +427,16 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
 
         jLabel9.setText("OBSERVAÇÃO");
 
-        jScrollPane2.setViewportView(jTextPane2);
+        jScrollPane2.setViewportView(txtObservacao);
 
-        jButton1.setText("GERAR CONTRATO");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        botaoGerarContrato.setText("GERAR CONTRATO");
+        botaoGerarContrato.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botaoGerarContrato.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        botaoGerarContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoGerarContratoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -339,22 +448,23 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
                     .addComponent(jLabel9)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                        .addComponent(botaoGerarContrato)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 683, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 683, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,27 +474,209 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jButton1)
+                .addComponent(botaoGerarContrato)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botaoGerarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarContratoActionPerformed
+        try {
+            camposObrigatorios(txtNumeroContrato.getText(), txtProduto.getText(),
+                    txtQuantidade.getText(), txtPreco.getText());
+
+            verificaContrato(txtNumeroContrato.getText());
+
+            int iC = botaoComprador.getSelectedIndex();
+            Comprador c = compradores.get(iC);
+
+            int iV = botaovendedor.getSelectedIndex();
+            Vendedor v = vendedores.get(iV);
+
+            Corretora contrato = new Corretora(txtNumeroContrato.getText(), txtData.getValue().toString(),
+                    txtDescricao.getText(), txtObservacao.getText(), txtProduto.getText() ,Float.parseFloat(txtPreco.getText()),
+                    Float.parseFloat(txtTotal.getText()), Integer.parseInt(txtQuantidade.getText()), c, v);
+
+            g.salvarContrato(contrato);
+
+            JOptionPane.showMessageDialog(null, "Contrato finalizado com SUCESSO!");
+
+            txtNumeroContrato.setText("");
+            txtProduto.setText("");
+            txtQuantidade.setText("");
+            txtPreco.setText("");
+            txtDescricao.setText("");
+            txtTotal.setText("");
+            txtObservacao.setText("");
+            
+
+        } catch (NumeroContratoInvalidException | CampoInvalidException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+
+    }//GEN-LAST:event_botaoGerarContratoActionPerformed
+
+    private void botaoCompradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCompradorActionPerformed
+
+        int i = botaoComprador.getSelectedIndex();
+        Comprador c = compradores.get(i);
+        txtIdComprador.setText(c.getId());
+        txtInscricaoComprador.setText(c.getInscEstadual());
+        txtCidadeComprador.setText(c.getCidade());
+        txtEnderecoComprador.setText(c.getEndereco());
+
+    }//GEN-LAST:event_botaoCompradorActionPerformed
+
+    private void botaovendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaovendedorActionPerformed
+
+        int i = botaovendedor.getSelectedIndex();
+        Vendedor v = vendedores.get(i);
+
+        txtIdVendedor.setText(v.getId());
+        txtInscricaoVendedor.setText(v.getInscEstadual());
+        txtCidadeVendedor.setText(v.getCidade());
+        txtEnderecoVendedor.setText(v.getEndereco());
+
+        txtAgencia.setText(v.getAgencia());
+        txtBanco.setText(v.getBanco());
+        txtCidadeBanco.setText(v.getCidadeBanco());
+        txtContaBanco.setText(v.getTipoConta());
+        txtEstadoBanco.setText(v.getEstadoBanco());
+
+    }//GEN-LAST:event_botaovendedorActionPerformed
+
+    private void txtPrecoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecoKeyReleased
+
+        float total = Float.parseFloat(txtPreco.getText()) * Float.parseFloat(txtQuantidade.getText());
+        txtTotal.setText("" + total);
+    }//GEN-LAST:event_txtPrecoKeyReleased
+
+    private void botaoConsultaContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsultaContratoActionPerformed
+        // TODO add your handling code here:
+        try{
+            
+            String id = txtNumeroContrato.getText();
+            camposObrigatorios(id);
+  
+           Corretora c = g.buscaContrato(id);
+           if(c == null){
+                JOptionPane.showMessageDialog(null, "Id de contrato Inexistente!!!");
+
+           }else{
+               JOptionPane.showMessageDialog(null, "Id Encontrado!!!");
+               
+               txtData.setToolTipText(c.getData()); 
+               txtDescricao.setText(c.getDescricao());
+               txtProduto.setText(c.getProduto());
+               txtQuantidade.setText("" + c.getQuantidade());
+               txtPreco.setText("" + c.getPreco());
+               txtObservacao.setText(c.getObservacao());
+               txtTotal.setText("" + c.getTotal());
+               
+               Comprador c1 = c.getC();
+               Vendedor v1 = c.getV();
+               
+               String buscaNomeC = c1.getNome();
+               String buscaNomeV = v1.getNome();
+               
+               for(int i = 0; i < botaoComprador.getItemCount(); i++){
+                   if(botaoComprador.getItemAt(i).equals(buscaNomeC)){
+                       
+                        botaoComprador.setSelectedIndex(i);  
+                   }
+               } 
+
+               for(int i = 0; i < botaovendedor.getItemCount(); i++){
+                   if(botaovendedor.getItemAt(i).equals(buscaNomeV)){
+                       
+                        botaovendedor.setSelectedIndex(i);  
+                   }
+               }   
+                         
+           }
+                                 
+        }catch(CampoIdInvalidException e){
+             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+    }//GEN-LAST:event_botaoConsultaContratoActionPerformed
+
+    private void botaoExcluirContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirContratoActionPerformed
+        // TODO add your handling code here:
+        
+         try{
+            
+            String id = txtNumeroContrato.getText();
+            camposObrigatorios(id);
+            
+            boolean verifica = g.removerContrato(id);
+            if(verifica == true){
+                 JOptionPane.showMessageDialog(null, "Contrato Removido com Sucesso!!");
+            }else{
+                 JOptionPane.showMessageDialog(null, "ID de contrato inexistente!!!");
+            }
+            
+                  
+        }catch(CampoIdInvalidException e){
+             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_botaoExcluirContratoActionPerformed
+
+    private void botaoAlterarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarContratoActionPerformed
+        // TODO add your handling code here:
+         try{          
+             camposObrigatorios(txtNumeroContrato.getText(), txtProduto.getText(),
+                    txtQuantidade.getText(), txtPreco.getText());                  
+
+            
+            int iC = botaoComprador.getSelectedIndex();
+            Comprador c = compradores.get(iC);
+
+            int iV = botaovendedor.getSelectedIndex();
+            Vendedor v = vendedores.get(iV);
+
+            Corretora contrato = new Corretora(txtNumeroContrato.getText(), txtData.getValue().toString(),
+                    txtDescricao.getText(), txtObservacao.getText(), txtProduto.getText() ,Float.parseFloat(txtPreco.getText()),
+                    Float.parseFloat(txtTotal.getText()), Integer.parseInt(txtQuantidade.getText()), c, v);
+
+            boolean alterado = g.alterarContrato(contrato);
+            if(alterado == true){
+                JOptionPane.showMessageDialog(null, "Contrato ALTERADO com SUCESSO!");
+
+                txtNumeroContrato.setText("");
+                txtProduto.setText("");
+                txtQuantidade.setText("");
+                txtPreco.setText("");
+                txtDescricao.setText("");
+                txtTotal.setText("");
+                txtObservacao.setText("");
+        
+            }else{
+                 JOptionPane.showMessageDialog(null, "Erro");
+            }
+        
+         }catch(CampoInvalidException e){
+             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+       
+        
+    }//GEN-LAST:event_botaoAlterarContratoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> botaoBancoEstado1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
-    private javax.swing.JFormattedTextField jFormattedTextField6;
-    private javax.swing.JFormattedTextField jFormattedTextField7;
+    private javax.swing.JButton botaoAlterarContrato;
+    private javax.swing.JComboBox<String> botaoComprador;
+    private javax.swing.JButton botaoConsultaContrato;
+    private javax.swing.JButton botaoExcluirContrato;
+    private javax.swing.JButton botaoGerarContrato;
+    private javax.swing.JComboBox<String> botaovendedor;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -400,20 +692,26 @@ public class TelaContrato extends javax.swing.JInternalFrame  {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JFormattedTextField txtAgencia;
+    private javax.swing.JTextField txtBanco;
+    private javax.swing.JTextField txtCidadeBanco;
+    private javax.swing.JTextField txtCidadeComprador;
+    private javax.swing.JTextField txtCidadeVendedor;
+    private javax.swing.JTextField txtContaBanco;
+    private javax.swing.JSpinner txtData;
+    private javax.swing.JTextPane txtDescricao;
+    private javax.swing.JTextField txtEnderecoComprador;
+    private javax.swing.JTextField txtEnderecoVendedor;
+    private javax.swing.JTextField txtEstadoBanco;
+    private javax.swing.JTextField txtIdComprador;
+    private javax.swing.JTextField txtIdVendedor;
+    private javax.swing.JTextField txtInscricaoComprador;
+    private javax.swing.JFormattedTextField txtInscricaoVendedor;
+    private javax.swing.JTextField txtNumeroContrato;
+    private javax.swing.JTextPane txtObservacao;
+    private javax.swing.JFormattedTextField txtPreco;
+    private javax.swing.JTextField txtProduto;
+    private javax.swing.JTextField txtQuantidade;
+    private javax.swing.JFormattedTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
