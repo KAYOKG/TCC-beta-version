@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class TelaPrincipal extends javax.swing.JFrame {
@@ -8,8 +9,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal() {
         initComponents();
+        setIcon();
         menuContatos.setVisible(false);
 
+    }
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("IconePrincipal.png")));
     }
 
     @SuppressWarnings("unchecked")
@@ -206,25 +212,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void botaoEXITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEXITActionPerformed
         // TODO add your handling code here:
-      
-       
+
+
     }//GEN-LAST:event_botaoEXITActionPerformed
 
     private void botaoEXITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoEXITMouseClicked
-      
+
         g.salvabinarioComprador();
         g.salvabinarioContratos();
         g.salvabinarioVendedor();
-      
-        
-        
-         System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_botaoEXITMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         g.relatorioContratos();
-          JOptionPane.showMessageDialog(null, "Relatorio Gerado");
+        JOptionPane.showMessageDialog(null, "Relatorio Gerado");
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
