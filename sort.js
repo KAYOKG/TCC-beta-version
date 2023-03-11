@@ -1,0 +1,1 @@
+const = ['est', 'amigao'] // commands
